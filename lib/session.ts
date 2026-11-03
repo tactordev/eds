@@ -36,7 +36,10 @@ export async function newSession(userId: string) {
 // on page load, check if the user has a valid, active session
 // also check periodically whether the session token is correct
 // redirect to login page if incorrect
-export async function verifySession(token: string | undefined) {
+export async function verifySession() {
+    const store = await cookies();
+    const token = store.get("session")?.value;
+
     if (!token) return { status: 0, error: "No session token found." };
 
     try {
