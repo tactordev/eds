@@ -13,12 +13,11 @@ const encoded_secret = new TextEncoder().encode(session_secret);
 
 // generate new session token
 export async function newSession(userId: string) {
-
     // generation
     const expiry = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-    const session = await new SignJWT({ userId })
+    const session = await new SignJWT({ user_id: userId })
         .setProtectedHeader({ alg: "HS256" })
-        .setIssuedAt()
+        .setIssuedAt(new Date(Date.now()))
         .setExpirationTime("7d")
         .sign(encoded_secret);
 

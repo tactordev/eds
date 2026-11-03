@@ -1,5 +1,9 @@
-import type { NextConfig } from "next";
+import type { NextConfig, NextApiResponse } from "next";
+import { NextResponse, NextRequest } from "next/server";
 import os from "os";
+
+type nextApiHandler = (req: NextRequest, res: NextApiResponse) => Promise<void>;
+
 
 function getIps() {
   const interfaces = os.networkInterfaces();
@@ -16,9 +20,29 @@ function getIps() {
   return ips;
 }
 
+const actionHeaderCheckOverride = async (
+  req: NextRequest,
+  res: NextApiResponse,
+  next: NextApiHandler,
+): Promise<any> => {
+  console.debug("REQUEST HEADERS:::: ", req.headers);
+
+  
+  const response = NextResponse.next();
+  if (process.env.NODE_ENV !== "production") {
+    response.headers.set('x-forwarded-host', 'localhost:5500');
+  }
+  return response;
+}
+
 
 const nextConfig: NextConfig = {
   /* config options here */
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['effective-space-doodle-v4gv6wgjpqq266vw-3000.app.github.dev'],
+    },
+  },
   allowedDevOrigins: getIps(),
 };
 

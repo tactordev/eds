@@ -9,11 +9,9 @@ import { redirect } from "next/navigation";
 
 
 export async function login(prev: any, data: FormData) {
-
     // extract form data
     const username = data.get("username") as string;
     const pwd = data.get("password") as string;
-
 
     // if either of the fields is missing, return error
     if (!username || !pwd) return { error: "Required fields were left blank." };
@@ -28,7 +26,7 @@ export async function login(prev: any, data: FormData) {
     if (!passwordMatch) return { error: "Invalid credentials." };
 
     // generate a new session if all credentials match
-    await newSession(user.user_id.toString());
+    await newSession(user.user_id);
     redirect("/app");
 };
 
