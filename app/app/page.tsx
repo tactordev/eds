@@ -27,33 +27,38 @@ const Content = () => {
 }
 
 export default function App() {
+    // initialise router & loading state
     const router = useRouter();
-
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    
-
     useEffect(() => {
+        // verifies session token/cookie that is stored in their browser cookies
         const checkSession = async () => {
+
             const res = await verifySession();
-            console.log(res);
-            if (res.status === 0) { router.push("/"); } else { setIsLoading(false); }
+            
+            if (res.status === 0) { // 0 means invalid or missing
+                router.push("/");
+            } else {
+                setIsLoading(false);
+            }
         }
 
         const interval = setInterval( async () => {
             checkSession();
-        }, 1000*60*5);
+        }, 1000*60*5); // checks token/cookie every 5 minutes
 
+        checkSession(); // check on page load
 
-        checkSession();
-
-        return clearInterval(interval);
-    })
+        return clearInterval(interval); // cleanup
+    });
 
     return (
         <div>
             {
-                isLoading ? <div className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center"><LoaderCircle className="w-4 h-4 text-zinc-300/80 animate-spin" /></div> : <Content />
+                isLoading ? <div className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center">
+                    <LoaderCircle className="w-4 h-4 text-zinc-300/80 animate-spin" /></div> 
+                : <Content />
             }
         </div>
     )

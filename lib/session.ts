@@ -12,7 +12,7 @@ const session_secret = process.env.SESSION_SECRET;
 const encoded_secret = new TextEncoder().encode(session_secret);
 
 // generate new session token
-export async function newSession(userId: string) {
+export async function newSession(userId: number) {
     // generation
     const expiry = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
     const session = await new SignJWT({ user_id: userId })

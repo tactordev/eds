@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 type nextApiHandler = (req: NextRequest, res: NextApiResponse) => Promise<void>;
 
 
-export const middleware = async (
+export const proxy = async (
   req: NextRequest,
 ): Promise<any> => {
     const url = req.nextUrl;
