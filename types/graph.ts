@@ -1,5 +1,8 @@
 import graphFromOsm from 'graph-from-osm';
 
+export type MapGraph {
+    
+}
 const generateGraph = async () => {
     const settings = {
         bbox: [], // geo rect

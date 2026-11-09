@@ -18,6 +18,7 @@ const Map = dynamic(() => import("./_components/map"), {
 
 
 const Content = () => {
+    const simulation: Simulation = generateSimulation();
     // frontend
     return (
         <div className="fixed top-0 left-0 w-screen h-screen grid grid-cols-3 grid-rows-2">
