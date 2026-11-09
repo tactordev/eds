@@ -20,7 +20,7 @@ const Map = dynamic(() => import("./_components/map"), {
 const Content = () => {
     // frontend
     return (
-        <div className="w-full h-full grid grid-cols-3 grid-rows-2">
+        <div className="fixed top-0 left-0 w-screen h-screen grid grid-cols-3 grid-rows-2">
             <Scenes /> <Call /> <Map /> <Units /> <Cad />
         </div>
     ) 
