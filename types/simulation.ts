@@ -1,9 +1,10 @@
 import { CADLog } from "./cad"
+import { Map } from "./map";
 import { RecordScene } from "./scenes";
 import { RecordUnit } from "./units";
 
 
-export type Simulation {
+export type Simulation = {
     map: Map,
     units: RecordUnit[],
     scenes: RecordScene[],
