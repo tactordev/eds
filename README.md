@@ -1,10 +1,9 @@
-# NEA-Emergency-Dispatching-Simulation
-OCR A level computer science NEA project
+# Emergency Dispatching Simulation
 
+Testing and viewing the simulation can be done online at https://eds.tactor.dev/.
 
 ### Setting Up
 1. `npm install`.
-
 
 #### Setting up the database
 To setup the database when working on development locally, follow these steps:
@@ -22,3 +21,6 @@ The `.env` also needs the number of salt rounds for the database (standard is `s
 
 #### Running:
 1. `npm run dev`.
+
+
+Made by tactordev.
