@@ -16,9 +16,16 @@ To setup the database when working on development locally, follow these steps:
 1. Update the schema: `npx drizzle-kit push --config=db/drizzle.config.ts`.
 2. Initialise the contents: `npx tsx ./db/init.ts`.
 
-The connection string is then `postgres://postgres:<password>@localhost:5432/postgres`. Insert this into the `.env` with `DATABASE_URL=`.
-The `.env` also needs the number of salt rounds for the database (standard is `salt_rounds=10`).
-
+4. 
+> The connection string is then `postgres://postgres:<password>@localhost:5432/postgres`. Insert this into the `.env` with `DATABASE_URL=`.
+> The `.env` also needs the number of salt rounds for the database (standard is `salt_rounds=10`).
+> 
+> Make sure it matches the following format:
+> ```
+DATABASE_URL=<postgres-url>
+SALT_ROUNDS=<number>
+SESSION_SECRET=<secret>
+```
 #### Running:
 1. `npm run dev`.
 
