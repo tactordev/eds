@@ -66,6 +66,8 @@ export class GraphTraversal {
     // for temporarily storing the shortest path between two nodes
     private path_cache: Record<string, Record<string, number>> = {};
     
+    private start_node: string | undefined = undefined;
+    private end_node: string | undefined = undefined;
     private graph: Graph | undefined = undefined;
     
     // external factors
@@ -73,10 +75,14 @@ export class GraphTraversal {
     private traffic_impact: number = 0;
 
     constructor ( // class initialiser
+        start_node: string,
+        end_node: string,
         graph: Graph,
         weather_impact: number,
         traffic_impact: number
     ) {
+        this.start_node = start_node;
+        this.end_node = end_node;
         this.graph = graph;
         this.weather_impact = weather_impact
         this.traffic_impact = traffic_impact
