@@ -22,10 +22,10 @@ To setup the database when working on development locally, follow these steps:
 > 
 > Make sure it matches the following format:
 > ```
-DATABASE_URL=<postgres-url>
-SALT_ROUNDS=<number>
-SESSION_SECRET=<secret>
-```
+> DATABASE_URL=<postgres-url>
+> SALT_ROUNDS=<number>
+> SESSION_SECRET=<secret>
+> ```
 #### Running:
 1. `npm run dev`.
 
