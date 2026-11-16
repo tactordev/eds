@@ -115,8 +115,25 @@ export class GraphTraversal {
     };
 };
 
+/* from github repository
 
-const generateGraph = async (
+const mySettings = {                                         // Define my settings
+  bbox: [4.3841, 50.8127, 4.3920, 50.8182],                          // Geographical rectangle
+  highways: ["primary", "secondary", "tertiary", "residential"],     // Type of roads to consider
+  timeout: 600000000, maxContentLength: 1500000000                   // OSM query parameters
+}
+
+const generateGraph = async (settings) => {
+  const osmData = await graphFromOsm.getOsmData(settings);   // Import OSM raw data
+  const graph = graphFromOsm.osmDataToGraph(osmData)         // Here is your graph
+  console.log("Your graph contains " + graph.features.length + " nodes ans links.");
+}
+
+generateGraph(mySettings);                                   // Execution
+
+*/
+
+export const generateGraph = async (
     {
         location
     }: {
@@ -130,10 +147,15 @@ const generateGraph = async (
     }; // setting / preset data
 
     // data & conversion
-    const data = await graphFromOsm.getOsmData(settings);
-    const graph = graphFromOsm.osmDataToGraph(data);
+    const gen = async (settings: any) => {
+        const data = await graphFromOsm.getOsmData(settings);
+        const graph = graphFromOsm.osmDataToGraph(data);
 
-    return graph;
+        return graph;
+    }
+
+    const result = gen(settings);
+    return result;
 }
 
 

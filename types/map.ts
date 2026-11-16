@@ -8,6 +8,6 @@ export type Map = {
     url: string,
     unit_positions: [RecordUnit, number][],
     scene_positions: [RecordScene, number][],
-    activeRoutes: [RecordUnit, number],
+    activeRoutes: [RecordUnit, number][],
     graph: Graph
 }

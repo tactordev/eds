@@ -34,7 +34,7 @@ export default function Home() {
       checkSession();
   });
 
-  return (
+  return (  
     <main className="flex flex-col w-full h-full items-center justify-center">
       {
         isLoading ? <div className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center">
