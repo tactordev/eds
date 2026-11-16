@@ -7,11 +7,11 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { verifySession } from "@/lib/session";
+import { generateSimulation } from "@/lib/simulation";
+import { Simulation } from "@/types/simulation";
 import {
     LoaderCircle
 } from "lucide-react";
-import { Simulation } from "@/types/simulation";
-import { generateSimulation } from "@/lib/simulation";
 
 
 const Map = dynamic(() => import("./_components/map"), {
@@ -21,7 +21,6 @@ const Map = dynamic(() => import("./_components/map"), {
 
 const Content = () => {
     const simulation: Simulation = generateSimulation();
-
     
     // frontend
     return (

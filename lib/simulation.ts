@@ -1,7 +1,6 @@
+import { Simulation } from "@/types/simulation";
 
 
 export function generateSimulation() {
-    return {
-        valid: true
-    }
+    return {} as Simulation;
 }
