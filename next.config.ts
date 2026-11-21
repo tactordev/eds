@@ -22,8 +22,6 @@ function getIps() {
 
 const actionHeaderCheckOverride = async (
   req: NextRequest,
-  res: NextApiResponse,
-  next: NextApiHandler,
 ): Promise<any> => {
   console.debug("REQUEST HEADERS:::: ", req.headers);
 
