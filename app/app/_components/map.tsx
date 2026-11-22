@@ -1,11 +1,35 @@
-import LF from "./lf";
+"use client";
+import { useEffect, useRef } from "react";
+import { Map as MapLibreMap, setWorkerUrl } from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 import Section from "./section";
 
 
 export default function Map() {
-    return (
-        <Section title="Map">
-            <LF posix={[51.505, -0.09]} zoom={10} />
-        </Section>
-    );
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const mapRef = useRef<MapLibreMap | null>(null);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
+        
+        const map = new MapLibreMap({
+            container: containerRef.current,
+            style: "https://tiles.openfreemap.org/styles/liberty",
+            center: [-71.09, 42.3626],
+            zoom: 14
+        });
+
+        mapRef.current = map;
+
+        return () => map.remove();
+    }, []);
+
+    return <Section title="Map">
+        <div
+            ref={containerRef}
+            className="h-full w-full rounded-md overflow-hidden"
+        />
+    </Section>
 }

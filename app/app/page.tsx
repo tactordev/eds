@@ -169,7 +169,27 @@ export default function App() {
             {
                 isLoading ? <div className="fixed top-0 left-0 w-screen h-screen flex flex-col justify-center items-center">
                     <LoaderCircle className="w-4 h-4 text-zinc-300/80 animate-spin" /></div> 
-                : <SetupMenu />
+                : <Content
+                    simulation={
+                        {
+                            map: {
+                                id: 1,
+                                url: "https://github.com/tactordev/eds",
+                                unit_positions: [], 
+                                scene_positions: [],
+                                activeRoutes: [],
+                                graph: new Graph(
+                                    {}
+                                )
+                            },
+                            units: [],
+                            scenes: [],
+                            cadLogs: [],
+                            secondsElapsed: 0,
+                            sceneTimings: []
+                        } as Simulation
+                    } 
+                />
             }
         </div>
     )
