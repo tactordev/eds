@@ -6,6 +6,7 @@ import { newSession, delSession } from "@/lib/session";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
+const tilerama = require("tilerama") as typeof import("tilerama");
 
 
 export async function login(prev: any, data: FormData) {
@@ -94,6 +95,11 @@ export async function register(prev: any, data: FormData) {
     redirect("/app");
 }
 
+export async function osm_convert(location_name: string) {
+    const graph = await tilerama.graph_from_pbf(`./data/${location_name}.osm.pbf`);
+    const { nodes, edges } = tilerama.graph_to_geojson(graph);
+    return { nodes, edges };
+}
 
 export async function logout() {
     await delSession();

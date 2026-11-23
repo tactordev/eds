@@ -13,10 +13,11 @@ import {
     LoaderCircle
 } from "lucide-react";
 import InputButton from "@/components/button";
-import { Map } from "@/types/map";
+import { locationPathNames, Map } from "@/types/map";
 import { Graph } from "@/types/graph";
 import Dropdown from "@/components/dropdown";
 import { locations } from "@/types/map";
+import { osm_convert } from "@/lib/actions";
 
 const MapComponent = dynamic(() => import("./_components/map"), {
     ssr: false
@@ -64,6 +65,10 @@ const SetupMenu = () => {
             parseFloat(location.split(",")[1]),
             parseFloat(location.split(",")[0]),
         ];
+
+        const graph = await osm_convert(locationPathNames[location]);
+        console.log(graph);
+
 
         // generate map info
         const map: Map = {
@@ -124,6 +129,9 @@ const SetupMenu = () => {
                             : <LoaderCircle className="w-4 h-4 text-zinc-300/80 animate-spin" />
                         }
                     </InputButton>
+                    {
+                        isPending && <p className="w-full text-center mt-0.5 text-xs text-zinc-200/40">This may take a while...</p>
+                    }
                 </form>
             : <Content simulation={sim!} /> }
         </div>
@@ -154,8 +162,8 @@ export default function App() {
 
         checkSession(); // check on page load
 
-        return clearInterval(interval); // cleanup
-    });
+        return () => clearInterval(interval); // cleanup
+    }, []);
 
     return (
         <div>

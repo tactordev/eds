@@ -42,6 +42,7 @@ const nextConfig: NextConfig = {
     },
   },
   allowedDevOrigins: getIps(),
+  serverExternalPackages: ["tilerama", "bcrypt"]
 };
 
 export default nextConfig;

@@ -13,6 +13,13 @@ export type Map = {
     graph: Graph
 }
 
+export const locationPathNames: Record<string, string> = {
+    "42.37,-71.10": "cambridge-me",
+    "37.13,-84.08": "london-ky",
+    "51.51,-0.13": "london-uk",
+    "52.21,0.12": "cambridge-uk"
+}
+
 
 // "long,lat": "name,identifier"
 export const locations: Record<string, string> = {
