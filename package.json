@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "overrides": {
+    "concaveman": "1.2.1"
+  },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.1",
     "bcrypt": "^6.0.0",
