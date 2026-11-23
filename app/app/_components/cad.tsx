@@ -5,32 +5,17 @@ import { CADLog, Form, SuspectFields, UnitFields, VehicleFields, VictimFields } 
 import Input from "@/components/input";
 import { title } from "@/lib/formatters";
 
-const logs: CADLog[] = [
-    {
-        logId: 1,
-        simId: 1,
-        callerId: 1,
-        sceneId: 1,
-        forms: [
-            {
-                formId: 1,
-                logId: 1,
-                formType: "vehicle",
-                fields: {
-                    licensePlate: "",
-                    model: "",
-                    colour: ""
-                }
-            }
-        ]
-    }
-];
-
 function save() {
     return;
 }
 
-export default function Cad() {
+export default function Cad(
+    {
+        data
+    }: {
+        data: CADLog[]
+    }
+) {
     const [state, action, isSaving] = useActionState(save, undefined);
     const [curLog, setCurLog] = useState<number>(-1);
 
@@ -38,7 +23,7 @@ export default function Cad() {
         <Section title="CAD">
             <div>
                 {
-                    logs.map((c: CADLog, i: number) =>
+                    data.map((c: CADLog, i: number) =>
                         <p onClick={() => setCurLog(c.logId)} key={`cad_log_selector_${i}`} className={`${curLog === c.logId ? "bg-zinc-200/5" : "bg-zinc-200/1" } border-1 border-zinc-200/2 shadow-sm backdrop-blur-md select-none font-mono tabular-nums px-4 py-0.5 text-sm rounded-sm transition-colors duration-200 hover:bg-zinc-200/3 hover:cursor-pointer w-fit`}>
                             { c.logId }
                         </p>
@@ -48,7 +33,7 @@ export default function Cad() {
 
             <div className="gap-2 flex flex-col justify-center items-start mt-4">
                 {
-                    logs.find((l: CADLog, i: number) => 
+                    data.find((l: CADLog, i: number) => 
                         l.logId === curLog
                     )?.forms.map((f: Form, i: number) =>
                         <div key={`cad_log_${curLog}_forms_${i}`} className="bg-zinc-800/10 px-4 py-4 flex flex-row w-full flex-wrap gap-2">

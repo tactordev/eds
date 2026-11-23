@@ -5,7 +5,13 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import Section from "./section";
 
 
-export default function Map() {
+export default function Map(
+    {
+        center
+    }: {
+        center: [number, number]
+    }
+) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const mapRef = useRef<MapLibreMap | null>(null);
 
@@ -17,7 +23,7 @@ export default function Map() {
         const map = new MapLibreMap({
             container: containerRef.current,
             style: "https://tiles.openfreemap.org/styles/liberty",
-            center: [-71.09, 42.3626],
+            center: center,
             zoom: 14
         });
 

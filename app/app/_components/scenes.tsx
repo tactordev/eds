@@ -61,39 +61,6 @@ function FilterBar() {
     )
 }
 
-
-const testData: RecordScene[] = [
-    {
-        sceneId: 1,
-        type: "1",
-        units: [
-
-        ],
-        startTime: 20
-    },
-    {
-        sceneId: 1,
-        type: "2",
-        units: [
-            {
-                unitId: 1,
-                callsign: "1L-4A1",
-                department: "police"
-            },
-            {
-                unitId: 2,
-                callsign: "1T-211",
-                department: "ambulance"
-            },
-            {
-                unitId: 3,
-                callsign: "4D-12",
-                department: "fire"
-            }
-        ],
-        startTime: 120
-    }
-]
 function Record(
     {
         data
@@ -126,11 +93,17 @@ function RecordList(
     return data.map((d, index) => <Record key={`scene_record_${index}`} data={d} />);
 }
 
-export default function Scenes() {
+export default function Scenes(
+    {
+        data
+    }: {
+        data: RecordScene[]
+    }
+) {
     return (
         <Section className="gap-2" title="Scenes">
             <FilterBar />
-            <RecordList data={testData} />
+            <RecordList data={data} />
         </Section>
     )
 }

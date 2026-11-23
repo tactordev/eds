@@ -3,96 +3,14 @@ import { useEffect, useState } from "react";
 import Section from "./section";
 import { Caller } from "@/types/call";
 
-const calls: Caller[] = [
+export default function Call(
     {
-        callerId: 1,
-        callType: ["police"],
-        location: [0, 0],
-        transcript: [
-            {
-                agent: "operator",
-                value: "This is 999, what service do you need?"
-            },
-            {
-                agent: "caller",
-                value: "H-help, I need the police here, now!"
-            },
-            {
-                agent: "operator",
-                value: "What's happened, ma'am?"
-            },
-            {
-                agent: "caller",
-                value: "There's a fight! Please get the police here now!"
-            },
-            {
-                agent: "caller",
-                value: " It's outside the pub on the corner of Andrew Drive and Parkinsons Street."
-            }
-        ],
-        responses: [
-            "Stay calm!",
-            "Breathe slowly...",
-            "Listen... everything is going to be okay.",
-            "Please stay on the line!",
-            "Get some help!"
-        ],
-        hungUp: false,
-    },
-    {
-        callerId: 2,
-        callType: ["police"],
-        location: [0, 0],
-        transcript: [
-
-        ],
-        responses: [],
-        hungUp: false,
-    },
-    {
-        callerId: 3,
-        callType: ["police"],
-        location: [0, 0],
-        transcript: [
-
-        ],
-        responses: [],
-        hungUp: false,
-    },
-    {
-        callerId: 4,
-        callType: ["police"],
-        location: [0, 0],
-        transcript: [
-
-        ],
-        responses: [],
-        hungUp: false,
-    },
-    {
-        callerId: 5,
-        callType: ["police"],
-        location: [0, 0],
-        transcript: [
-
-        ],
-        responses: [],
-        hungUp: false,
-    },
-    {
-        callerId: 6,
-        callType: ["police"],
-        location: [0, 0],
-        transcript: [
-
-        ],
-        responses: [],
-        hungUp: false,
-    },
-];
-
-
-export default function Call() {
+        data
+    }: {
+        data: Caller[]
+    }
+) {
+    const calls: Caller[] = data;
     const [curCaller, setCurCaller] = useState<number>((() => {
         if (calls.length > 0) {
             return calls[0].callerId;

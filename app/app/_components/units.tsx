@@ -1,6 +1,6 @@
 import { ChevronDown, Clock, Hash, IdCard, Info, ListSortDescending, ShieldUser, Users, UserSearch } from "lucide-react";
 import Section from "./section";
-import { Unit } from "@/types/units";
+import { RecordUnit } from "@/types/units";
 import { title } from "@/lib/formatters";
 
 
@@ -61,7 +61,7 @@ function FilterBar() {
 }
 
 
-const testData: Unit[] = [
+const testData: RecordUnit[] = [
     {
         unitId: 1,
         callsign: "1L-4A1",
@@ -99,7 +99,7 @@ function Record(
     {
         data
     }: {
-        data: Unit
+        data: RecordUnit
     }
 ) {
     return (
@@ -116,17 +116,23 @@ function RecordList(
     {
         data
     }: {
-        data: Unit[]
+        data: RecordUnit[]
     }
 ) {
     return data.map((d, index) => <Record key={`unit_record_${index}`} data={d} />);
 }
 
-export default function Units() {
+export default function Units(
+    {
+        data
+    }: {
+        data: RecordUnit[]
+    }
+) {
     return (
         <Section className="gap-2" title="Units">
             <FilterBar />
-            <RecordList data={testData} />
+            <RecordList data={data} />
         </Section>
     )
 }

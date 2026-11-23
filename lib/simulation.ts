@@ -17,6 +17,7 @@ export function generateSimulation(
         map: map,
         units: [],
         scenes: [],
+        calls: [],
         cadLogs: [],
         secondsElapsed: 0,
         sceneTimings: []
