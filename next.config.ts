@@ -42,7 +42,8 @@ const nextConfig: NextConfig = {
     },
   },
   allowedDevOrigins: getIps(),
-  serverExternalPackages: ["tilerama", "bcrypt"]
+  serverExternalPackages: ["tilerama", "bcrypt"],
+  outputFileTracingIncludes: { "/app": ["./data/**/*"] },
 };
 
 export default nextConfig;
