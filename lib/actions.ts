@@ -97,8 +97,7 @@ export async function register(prev: any, data: FormData) {
 
 export async function osm_convert(location_name: string) {
     const graph = await tilerama.graph_from_pbf(`./data/${location_name}.osm.pbf`);
-    const { nodes, edges } = tilerama.graph_to_geojson(graph);
-    return { nodes, edges };
+    return JSON.stringify(graph);
 }
 
 export async function logout() {
